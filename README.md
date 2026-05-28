@@ -77,5 +77,6 @@ A system monitoring file integrity must itself be heavily secured. The architect
 
 ## 🎥 Web System Walkthrough
 
-[![Web System Walkthrough](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
-*Click the image above to watch the full system walkthrough on YouTube.*
+[![Web System Walkthrough](https://img.youtube.com/vi/Fb5hqY5pbBU/hqdefault.jpg)](https://www.youtube.com/playlist?list=PLEGGwbX6woRl8fk_Fyb844V0y6c92zs_J)
+
+*Click the image above to watch the full system walkthrough playlist on YouTube.*
