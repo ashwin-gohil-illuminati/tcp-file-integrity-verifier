@@ -57,3 +57,25 @@ A system monitoring file integrity must itself be heavily secured. The architect
 * 🔑 **The Foundation (OAuth 2.0 & JWT):** When a user successfully authenticates, the FastAPI backend generates a JSON Web Token (JWT). This acts as a digital passport. The Django frontend securely stores this JWT inside a session cookie, allowing the user to navigate the application without having to log in on every single page load.
 * 🛡️ **The Custom Anti-Hijacking Layer:** Standard cookie-based authentication carries a specific risk: if a malicious actor manages to copy or steal the user's session cookie, they could theoretically bypass the login screen (a technique known as Session Hijacking). To neutralize this threat, a custom validation layer was engineered directly into Django. 
 * ✅ **Active Credential Verification:** Even if an attacker injects a stolen JWT cookie into their browser, the system will reject them. The custom security layer dictates that the system can *only* be accessed if the current session state proves the user actively and explicitly logged in using their manual username and password credentials. The stolen token is rendered completely useless without the accompanying, verified active login event.
+
+## 📸 System Snapshots
+
+### 1. Web Work Flow
+
+<img width="801" height="786" alt="image3" src="https://github.com/user-attachments/assets/817031e3-acaf-4e37-8d5b-c6f281b29a96" />
+
+### 2. Core Architecture
+
+<img width="802" height="667" alt="image2" src="https://github.com/user-attachments/assets/9d4cd175-e2e8-43ea-9e40-8f99394afd6f" />
+
+### 3. API Structure
+
+
+<img width="541" height="501" alt="image5" src="https://github.com/user-attachments/assets/f19e1ef9-c30d-444e-b0c9-04f52c2f6ae7" />
+
+---
+
+## 🎥 Web System Walkthrough
+
+[![Web System Walkthrough](https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)
+*Click the image above to watch the full system walkthrough on YouTube.*
