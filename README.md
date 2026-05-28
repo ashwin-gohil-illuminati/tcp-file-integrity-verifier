@@ -14,9 +14,9 @@
 
 ## 🧠 The Core Concept: What the System Actually Does
 
-First, it is important to clarify a crucial detail: the system does not actually "share" or transfer files. Instead, it is a file metadata and integrity tracker. If actual files were transferred, it would be a massive security risk and a heavy load on the server. 
+The system calculates an MD5 "hash"—a unique digital fingerprint—for a file on the user's local computer. It then sends only that fingerprint, along with the file's name and location, to the server.
 
-Instead, the system calculates an MD5 "hash"—a unique digital fingerprint—for a file on the user's local computer. It then sends only that fingerprint, along with the file's name and location, to the server. If a hacker or malware changes even a single letter in that local file, the file's fingerprint will change entirely. The system tracks these fingerprints to alert users to unauthorized changes.
+If a hacker or malware changes even a single letter in that local file or it is altered, the file's fingerprint will change entirely. The system tracks these fingerprints to alert users to unauthorized changes.
 
 ## 🌊 The Workflow: Flowing Step-by-Step
 
