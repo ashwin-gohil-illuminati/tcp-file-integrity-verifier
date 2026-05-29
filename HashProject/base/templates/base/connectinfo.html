@@ -1,0 +1,341 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+{% load avatar %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    @import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
+
+*{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+	background: #f5f6fa;
+}
+/* earlier position was fixed  and top was 11 or 11.5%*/
+.wrapper .sidebar{
+	background: rgb(5, 68, 104);
+	position: absolute;
+	top: 3.7em;
+	left: 0;
+	width: 225px;
+	height: 100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+    
+    
+}
+
+.wrapper .sidebar .profile{
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+	display: block;
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3{
+	color: #ffffff;
+	margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+	color: rgb(206, 240, 253);
+	font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+	display: block;
+	padding: 13px 30px;
+	border-bottom: 1px solid #10558d;
+	color: rgb(241, 237, 237);
+	font-size: 16px;
+	position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+	color: #dee4ec;
+	width: 30px;
+	display: inline-block;
+}
+
+ 
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+	color: #0c7db1;
+
+	background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+	color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+	display: block;
+}
+
+.wrapper .section{
+	width: calc(100% - 225px);
+	margin-left: 225px;
+	transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar{
+    margin-top: -1.5em;
+	background: rgb(7, 105, 185);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+ 
+}
+
+.wrapper .section .top_navbar .hamburger a{
+	font-size: 28px;
+	color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover{
+	color: #a2ecff;
+}
+
+ 
+
+body.active .wrapper .sidebar{
+	left: -225px;
+}
+
+body.active .wrapper .section{
+	margin-left: 0;
+	width: 100%;
+}
+
+.center {
+text-align: center;
+}
+
+h3{
+    font-size:medium;
+}
+
+/* Styling for table */
+
+#connectinfo {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  
+}
+/* Here no wrap is put compared to original scanjobs.html */
+#connectinfo  td, #lastrescan  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+#connectinfo  tr:nth-child(even){background-color: #f2f2f2;}
+
+#connectinfo   tr:hover {background-color: #ddd;}
+
+#connectinfo th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(7, 105, 185);
+  color: white;
+  white-space: nowrap;
+  
+}
+
+h1{
+    font-size:2em;
+    color: black;
+}
+
+h2{
+    font-size:1em;
+    color: black; 
+}
+
+
+</style>
+
+  <!-- <main> -->
+    <div class="wrapper">
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+             
+        </div>
+        <div class="sidebar">
+            <div class="profile">
+                <img src="{{request.COOKIES.JWT|fetchavatar}}" alt="profile_picture">
+                <h3>{{request.COOKIES.JWT|getname}}</h3>
+                
+            </div>
+            <ul>
+                <li>
+                    <a href="{% url 'connectinfo' %}" class="active">
+                        <span class="icon"></span>
+                        <span class="item">Connect Info</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'scanjobs' %}">
+                        <span class="icon"></span>
+                        <span class="item">ScanJobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lastscan' %}">
+                        <span class="icon"></span>
+                        <span class="item">Last Scan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lastrescan' %}">
+                        <span class="icon"></span>
+                        <span class="item">Last ReScan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'getscan' %}">
+                        <span class="icon"></span>
+                        <span class="item">GetScan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'getrescan' %}">
+                        <span class="icon"></span>
+                        <span class="item">GetReScan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'deletescanjob' %}">
+                        <span class="icon"></span>
+                        <span class="item">Delete Scan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'deleterescanjob' %}">
+                        <span class="icon"></span>
+                        <span class="item">Delete Rescan</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% load populatejobs %}
+    <div class="center">
+        <h1 id="connectinfo">Get your Connection info to communicate with the server</h1>
+        <br>
+        <br>
+           
+        <label for="connectinfo"><h2>Provide input to setup your connection info for scan job</h2></label>
+                    <form id="myForm" action="" method="POST">
+                    {% csrf_token %}
+                    <table id="connectinfo">
+                        <tr>
+                            <th>Job Description</th>
+                            <th>Job</th>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <td><span><label for="connectinfo">Provide a job description </label><input required type="text" name="jobdescription" placeholder="mandatory"/></span></td>
+                            <td><span><label for="connectinfo">Provide Job if Rescan </label><select name="JobID" id="JobID">
+                                <option value="0">Choose if Rescan</option>
+                                {% for item in request|populate %}
+                                <option value="{{item.jobid}}">
+                                    {{item.jobid}} {{item.jobdescription}}
+                                </option>
+                                {%endfor%}
+                                </select></span></td>
+                        </tr>
+                    </table>
+                    </form>
+                <button type="submit" form="myForm" value="Submit">Submit</button>
+                <br>
+                <br>
+
+                {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                {% if data %}
+                <table id="connectinfo">
+                    <tr>
+                        <th>Host</th>
+                        <th>Port</th>
+                        <th>Command Line Usage</th>
+                        <th>Note</th>
+                    </tr>
+                    <tr>
+                        <td><span>{{data.ip}}</span></td>
+                        <td><span>{{data.port}}</span></td>
+                        <td><span><strong> Usage(For a new Scan):</strong> python client.py  {{data.ip}} {{data.port}} &lt&lt filename.txt &gt&gt</span>
+                            <br><span><strong> Usage(For Rescan of a previous scan):</strong> python client.py {{data.ip}} {{data.port}} rescan</span>
+                        </td>
+                        <td><span>Server is waiting for you to connect</span></td>
+                    </tr>
+                </table>
+                {% endif %}
+                {% endif %}
+
+       
+               {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                <li>{{message}}</li>
+                {% endfor %}
+              </ul>
+                {% endif %}
+    </div>
+    
+
+  <script>
+       var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+		document.querySelector("body").classList.toggle("active");
+	})
+  </script>
+
+<!-- </main> -->
+
+
+{% endblock content %}
+    
+
+
+
